@@ -40,4 +40,4 @@ GROUP BY
 ORDER BY 
     goals DESC
 	LIMIT 10;
--- CONCLUSION: FC Barcelona scored the most goals during 2015/2016
+-- CONCLUSION: FC Barcelona scored the most goals- 112 goals- during 2015/2016
