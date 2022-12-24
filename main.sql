@@ -45,13 +45,15 @@ ORDER BY
 -- How old were top 10 players for 2008-16?
 SELECT 
 	rank() over(order by ROUND(AVG(Player_Attributes.overall_rating), 1) desc) as Ranking,
-    Player.player_name AS Name,
+	Player.player_name AS Name,
 	FLOOR((julianday('2016-12-31')-julianday(Player.birthday))/365.25) AS Age,
 	ROUND(AVG(Player_Attributes.overall_rating), 1) AS Rating
 FROM Player 
 JOIN Player_Attributes  ON 
-    Player.player_api_id = Player_Attributes.player_api_id
+    	Player.player_api_id = Player_Attributes.player_api_id
 GROUP BY 
-    Player.player_api_id
+    	Player.player_api_id
 LIMIT 10;
 -- Conclusion: Lionel Messi had the highest average rating between 2008-16
+
+
