@@ -56,4 +56,81 @@ GROUP BY
 LIMIT 10;
 -- Conclusion: Lionel Messi had the highest average rating between 2008-16
 
+-- Top 3 Matches with the most goals scored by season
+SELECT 
+    a.Ranking,
+    a.season,
+    t.team_long_name as HomeTeam,
+    a.home_team_goal as HomeGoals,
+    t1.team_long_name as AwayTeam,
+    a.away_team_goal as AwayGoals
+FROM (
+    SELECT 
+        season,
+        home_team_api_id as hid, 
+        away_team_api_id as aid,
+        home_team_goal,
+        away_team_goal,
+        row_number() over(partition by season order by home_team_goal+away_team_goal desc) as Ranking
+    FROM 
+        Match) as a
+JOIN Team t  ON   a.hid = t.team_api_id
+JOIN Team t1 ON   a.aid = t1.team_api_id
+WHERE 
+    a.ranking <= 3;
+
+
+-- Most appearances in 2009/2010 season
+WITH a as (
+    SELECT home_player_1 as PlayerID from Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_2 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_3 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_4 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_5 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_6 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_7 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_8 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_9 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_10 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT home_player_11 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_1 as PlayerID from Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_2 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_3 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_4 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_5 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_6 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_7 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_8 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_9 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_10 FROM Match WHERE season = '2009/2010'
+	UNION ALL
+	SELECT away_player_11 FROM Match WHERE season = '2009/2010'
+)
+SELECT player_name, count(PlayerID) Appearances 
+FROM a 
+JOIN Player ON a.PlayerID = Player.player_api_id
+GROUP BY a.PlayerID
+ORDER BY Appearances DESC
+LIMIT 1;
+-- Conclusion: Robert Olejnik had the most appearances in 2009/2010 playing in 39 matches
 
