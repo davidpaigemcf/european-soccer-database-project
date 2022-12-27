@@ -1,4 +1,4 @@
-# Exploring Data from a Consumer Prices Survey
+# Exploring Data from a European Football Database
 
 In this project, I analyze stats from 11,000 players and 25,000 matches in a European Soccer Database for 2009-16. The purpose of this project is to demonstrate my proficiency in using Complex Joins, Windows, and CTE's.
 
