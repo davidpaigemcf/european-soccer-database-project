@@ -6,6 +6,6 @@ In this project, I analyze stats from 11,000 players and 25,000 matches in a Eur
 Joins, Windows, Unions, Partitioning, CTE's
 
 ## ❓ Queries
-I performed 4 queries, whose results I included in the comments. This is an ongoing project, which may be updated with more queries in the future.
+I performed 3 queries, whose results I included in the comments. This is an ongoing project, which may be updated with more queries in the future.
 
 
